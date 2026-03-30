@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Contract Routing | Zinc Work</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --zinc-pink: #F04DA9;
+            --zinc-dark: #131313;
+            --zinc-gray: #6C6C6C;
+            --zinc-blue: #0066FF;
+            --zinc-peach: #FFF5F0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--zinc-peach);
+            color: var(--zinc-dark);
+            overflow: hidden;
+        }
+
+        .presentation { width: 100vw; height: 100vh; position: relative; }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            padding: 60px 80px;
+            display: none;
+            flex-direction: column;
+            background: var(--zinc-peach);
+        }
+
+        .slide.active { display: flex; }
+        .slide.center { justify-content: center; align-items: center; text-align: center; }
+
+        .slide-number {
+            position: absolute;
+            bottom: 30px; right: 40px;
+            font-size: 14px;
+            color: var(--zinc-gray);
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px; left: 40px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--zinc-blue);
+        }
+
+        h1 { font-size: 56px; font-weight: 700; margin-bottom: 20px; color: var(--zinc-dark); }
+        h1 span { color: var(--zinc-pink); }
+        h2 { font-size: 42px; font-weight: 600; margin-bottom: 32px; color: var(--zinc-dark); }
+        h2 span { color: var(--zinc-pink); }
+        h4 { font-size: 18px; font-weight: 600; margin-bottom: 12px; color: var(--zinc-dark); }
+        p { font-size: 22px; line-height: 1.6; color: var(--zinc-gray); }
+
+        .subtitle { font-size: 26px; color: var(--zinc-gray); margin-bottom: 40px; }
+        .tag {
+            display: inline-block;
+            background: var(--zinc-pink);
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .content-area { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 10px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 10px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 10px; }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .card h4 { color: var(--zinc-blue); margin-bottom: 14px; }
+        .card ul { list-style: none; padding: 0; }
+        .card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 16px;
+            color: var(--zinc-gray);
+            line-height: 1.5;
+        }
+        .card li:last-child { border-bottom: none; }
+        .card li::before { content: "→ "; color: var(--zinc-pink); font-weight: 700; }
+
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            background: white;
+            padding: 14px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--zinc-dark);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .flow-step small { display: block; font-size: 12px; font-weight: 400; color: var(--zinc-gray); margin-top: 4px; }
+        .flow-arrow { color: var(--zinc-pink); font-size: 22px; font-weight: 700; }
+
+        .highlight-box {
+            background: white;
+            border-left: 4px solid var(--zinc-pink);
+            padding: 22px 28px;
+            margin: 16px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .highlight-box .label { font-size: 12px; font-weight: 700; color: var(--zinc-pink); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .highlight-box p { font-size: 18px; color: var(--zinc-dark); }
+
+        .big-email {
+            background: white;
+            border-radius: 16px;
+            padding: 32px 48px;
+            margin: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .big-email .email-label { font-size: 14px; color: var(--zinc-gray); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .big-email .email-addr { font-size: 30px; font-weight: 700; color: var(--zinc-blue); }
+
+        .agent-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 16px; }
+
+        .agent-box {
+            background: white;
+            border-radius: 12px;
+            padding: 22px 16px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .agent-box .number {
+            width: 36px; height: 36px;
+            background: var(--zinc-pink);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 12px;
+            font-size: 16px;
+        }
+
+        .agent-box .name { font-weight: 600; color: var(--zinc-dark); margin-bottom: 8px; font-size: 15px; }
+        .agent-box .desc { font-size: 13px; color: var(--zinc-gray); line-height: 1.5; }
+
+        .status-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin-top: 16px;
+        }
+
+        .status-table th {
+            background: var(--zinc-dark);
+            color: white;
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 15px;
+            color: var(--zinc-gray);
+        }
+
+        .status-table tr:last-child td { border-bottom: none; }
+
+        .pill {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .pill.blue { background: #e8f0ff; color: var(--zinc-blue); }
+        .pill.pink { background: #fce8f4; color: var(--zinc-pink); }
+        .pill.green { background: #e6f9f0; color: #1a8a52; }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 10px; align-items: start; }
+
+        .nav-dots {
+            position: absolute;
+            bottom: 30px; left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .nav-dot.active { background: var(--zinc-pink); }
+    </style>
+</head>
+<body>
+<div class="presentation">
+
+    <!-- SLIDE 1: Title -->
+    <div class="slide active center">
+        <div class="logo">Zinc</div>
+        <div class="tag">Sales + Legal</div>
+        <h1>Contract Submissions,<br><span>Sorted.</span></h1>
+        <p class="subtitle">How we're handling legal requests from today</p>
+        <div class="slide-number">1 / 6</div>
+    </div>
+
+    <!-- SLIDE 2: How to submit -->
+    <div class="slide">
+        <div class="logo">Zinc</div>
+        <h2>One address.<br><span>That's it.</span></h2>
+        <div class="content-area">
+            <div class="big-email">
+                <div class="email-label">Forward or CC any contract to</div>
+                <div class="email-addr">legal+contracts@zincwork.com</div>
+            </div>
+            <div class="grid-3" style="margin-top: 20px;">
+                <div class="card">
+                    <h4>What to send</h4>
+                    <ul>
+                        <li>Redlines from a prospect</li>
+                        <li>NDA requests</li>
+                        <li>DDQs / RFPs</li>
+                        <li>Any legal review request</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>How to submit</h4>
+                    <ul>
+                        <li>Forward the email to that address</li>
+                        <li>Or CC it on your original send</li>
+                        <li>No form, no Slack message needed</li>
+                        <li>Subject line = company name</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>That's genuinely it</h4>
+                    <ul>
+                        <li>No chasing Hamraj directly</li>
+                        <li>No posting in channels</li>
+                        <li>No spreadsheet to update</li>
+                        <li>Everything else is automatic</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">2 / 6</div>
+    </div>
+
+    <!-- SLIDE 3: What happens automatically -->
+    <div class="slide">
+        <div class="logo">Zinc</div>
+        <h2>What happens <span>automatically</span></h2>
+        <div class="content-area">
+            <div class="flow" style="margin-bottom: 24px;">
+                <div class="flow-step">You forward the email<small>legal+contracts@zincwork.com</small></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">AI reads it<small>Company, type, urgency</small></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Notion row created<small>Legal Matter Tracker</small></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Slack notification<small>#legal-submissions</small></div>
+            </div>
+            <div class="agent-grid">
+                <div class="agent-box">
+                    <div class="number">1</div>
+                    <div class="name">AI Parsing</div>
+                    <div class="desc">Reads the email and extracts company name, contract type, urgency, and who sent it</div>
+                </div>
+                <div class="agent-box">
+                    <div class="number">2</div>
+                    <div class="name">Notion Tracker</div>
+                    <div class="desc">Creates a new row instantly in the Legal Matter Tracker — no manual entry</div>
+                </div>
+                <div class="agent-box">
+                    <div class="number">3</div>
+                    <div class="name">Slack Alert</div>
+                    <div class="desc">Posts a clean summary to #legal-submissions so Legal sees it immediately</div>
+                </div>
+                <div class="agent-box">
+                    <div class="number">4</div>
+                    <div class="name">You're done</div>
+                    <div class="desc">Legal picks it up from Notion. You'll hear back automatically when status changes</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">3 / 6</div>
+    </div>
+
+    <!-- SLIDE 4: How Legal uses it -->
+    <div class="slide">
+        <div class="logo">Zinc</div>
+        <h2>For <span>Legal</span> — the Notion tracker</h2>
+        <div class="content-area">
+            <div class="two-col">
+                <div>
+                    <div class="highlight-box">
+                        <div class="label">Single source of truth</div>
+                        <p>Every submission lands in the Legal Matter Tracker in Notion. No inbox archaeology, no missed requests.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <div class="label">Just update the status</div>
+                        <p>Change the status in Notion and everything else follows — stage log updates, AE gets notified, timestamps recorded automatically.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <div class="label">Full history per matter</div>
+                        <p>Each row has a stage log — every status change is timestamped and stored. No need to remember who touched what.</p>
+                    </div>
+                </div>
+                <div>
+                    <table class="status-table">
+                        <thead>
+                            <tr><th>Status</th><th>What it means</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><span class="pill blue">Not started</span></td><td>Just received, not picked up yet</td></tr>
+                            <tr><td><span class="pill pink">In review</span></td><td>Legal is actively working it</td></tr>
+                            <tr><td><span class="pill pink">Waiting on AE</span></td><td>Ball is in Sales' court</td></tr>
+                            <tr><td><span class="pill pink">Waiting on client</span></td><td>Pending external response</td></tr>
+                            <tr><td><span class="pill green">Signed & complete</span></td><td>Done — timestamps auto-recorded</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">4 / 6</div>
+    </div>
+
+    <!-- SLIDE 5: How Sales gets notified -->
+    <div class="slide">
+        <div class="logo">Zinc</div>
+        <h2>For <span>Sales</span> — no more chasing</h2>
+        <div class="content-area">
+            <div class="flow" style="margin-bottom: 28px;">
+                <div class="flow-step">Legal updates status in Notion<small>e.g. "In review" → "Waiting on AE"</small></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">System detects the change<small>Checks every 15 minutes</small></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Slack DM sent to you<small>Direct message, not a channel ping</small></div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>What you'll receive</h4>
+                    <ul>
+                        <li>A Slack DM when your matter's status changes</li>
+                        <li>Company name, contract type, new status</li>
+                        <li>Link straight to the Notion row</li>
+                        <li>Timestamp of when Legal moved it</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>What you no longer need to do</h4>
+                    <ul>
+                        <li>DM Hamraj asking for an update</li>
+                        <li>Check the tracker manually</li>
+                        <li>Post in #legal-submissions to follow up</li>
+                        <li>Guess where something is in the process</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">5 / 6</div>
+    </div>
+
+    <!-- SLIDE 6: Weekly report -->
+    <div class="slide">
+        <div class="logo">Zinc</div>
+        <h2>Weekly <span>visibility</span> for Legal leadership</h2>
+        <div class="content-area">
+            <div class="grid-2">
+                <div>
+                    <div class="highlight-box">
+                        <div class="label">Every Friday at 2pm</div>
+                        <p>Hamraj receives a Slack DM with a full summary of all active legal matters.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <div class="label">What's in it</div>
+                        <p>All open matters, current status, how long each has been open, turnaround times, and a breakdown by contract type.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <div class="label">Coming next</div>
+                        <p>Monthly and quarterly rollup reports — once the weekly trial is signed off.</p>
+                    </div>
+                </div>
+                <div class="card" style="display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px; font-weight: 700; color: var(--zinc-pink);">0</div>
+                        <div style="font-size: 14px; color: var(--zinc-gray);">manual updates needed per week</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px; font-weight: 700; color: var(--zinc-blue);">3</div>
+                        <div style="font-size: 14px; color: var(--zinc-gray);">automated workflows running</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px; font-weight: 700; color: var(--zinc-dark);">1</div>
+                        <div style="font-size: 14px; color: var(--zinc-gray);">email address to remember</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">6 / 6</div>
+    </div>
+
+    <!-- Nav dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" data-slide="0"></div>
+        <div class="nav-dot" data-slide="1"></div>
+        <div class="nav-dot" data-slide="2"></div>
+        <div class="nav-dot" data-slide="3"></div>
+        <div class="nav-dot" data-slide="4"></div>
+        <div class="nav-dot" data-slide="5"></div>
+    </div>
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.nav-dot');
+    let currentSlide = 0;
+
+    function showSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        currentSlide = (n + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') showSlide(currentSlide + 1);
+        if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+    });
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => showSlide(parseInt(dot.dataset.slide)));
+    });
+</script>
+</body>
+</html>
