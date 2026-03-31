@@ -73,7 +73,7 @@
             text-transform: uppercase;
         }
 
-        .content-area { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 10px; }
+        .content-area { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 30px; }
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 10px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 10px; }
@@ -247,35 +247,36 @@
         <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 975 330" width="110" height="37"><defs><linearGradient id="zg2" x1="2448.23" y1="-1225.9" x2="2688.74" y2="-1225.9" gradientTransform="translate(-1061.69 -2405.72) rotate(90)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00ffce"/><stop offset="1" stop-color="#0ee6bd"/></linearGradient></defs><rect width="975" height="330" rx="39.97" ry="39.97" fill="#000"/><path fill="#fff" d="M867.21,177.56h51.57c-8.24-28.23-39.82-45.02-85.02-45.02-23.25,0-44.66,4.96-60.3,13.95-18.2,10.47-27.82,26.14-27.82,45.29s8.7,34.38,25.87,44.54c15.29,9.05,36.81,13.83,62.25,13.83,57.75,0,77.55-24,84.31-39.77h-52.1c-7,8.13-18.27,12.25-33.52,12.25-22.81,0-36.97-11.82-36.97-30.85,0-9.9,3.97-18.15,11.49-23.86,6.67-5.07,15.87-7.86,25.92-7.86,16.51,0,30.11,6.98,34.32,17.49Z"/><polygon fill="#fff" points="318.42 201.75 318.42 245.79 490.72 245.79 490.72 214.33 373.26 214.33 490.72 127.16 490.72 83.12 321.45 83.12 320.65 114.58 435.52 114.58 318.42 201.75"/><path fill="#fff" d="M656.02,159.63c19.32,0,30.85,11.04,30.85,29.54v56.62h48.53l.43-61.88c.1-13.86-4.17-25.24-12.69-33.83-10.38-10.46-26.92-16.22-46.56-16.22-24.81,0-45,8.76-56.85,24.66l-1.96,2.63-5.83-23.79h-40.54v108.44h48.52v-50.5c0-22,13.83-35.66,36.1-35.66Z"/><rect fill="#fff" x="506.15" y="137.36" width="48.95" height="108.44"/><path fill="url(#zg2)" d="M269.42,217.91V107.63c0-3.57-1.9-6.87-4.99-8.65l-95.21-55.12c-3.1-1.79-6.92-1.79-10.02,0L63.98,98.97c-3.09,1.79-4.99,5.09-4.99,8.65v110.28c0,3.57,1.9,6.87,4.99,8.65l95.21,55.12c3.1,1.79,6.92,1.79,10.02,0l95.21-55.12c3.09-1.79,4.99-5.09,4.99-8.65Z"/><polygon points="148.75 91.91 107 116.24 107 133.18 140.53 113.61 140.7 113.78 114.89 161.12 114.89 179.04 172.1 145.83 172.26 146 127.38 209.78 127.38 230 245.75 161.29 227.83 150.93 161.41 189.89 161.25 189.73 203.33 127.42 188.21 118.54 136.59 148.63 136.42 148.46 163.39 100.46 148.75 91.91"/></svg></div>
         <h2>Why we're <span>here</span></h2>
         <div class="content-area">
+            <p style="font-size:20px;color:var(--zinc-gray);margin-bottom:24px;font-style:italic;">We wanted to make the contract process smoother for everyone — less time spent on updates, and more visibility at every stage.</p>
             <div class="grid-3">
                 <div class="card">
-                    <h4>A checkbox wasn't enough</h4>
+                    <h4>Visibility for Sales</h4>
                     <ul>
-                        <li>AEs sent the email, pinged #legal-submissions, then waited</li>
-                        <li>The only feedback was a green tick when Legal picked it up</li>
-                        <li>No status updates after that — AEs were left in the dark</li>
+                        <li>Contracts were submitted by email with a ping to the legal channel</li>
+                        <li>Sales received a notification when Legal picked something up</li>
+                        <li>After that, it was difficult to know where things were without following up directly</li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h4>Manual overhead for Legal</h4>
+                    <h4>Reducing effort for Legal</h4>
                     <ul>
-                        <li>Every status update had to be communicated manually</li>
-                        <li>A team with very little time was spending it on hand-holding</li>
-                        <li>No way to manage AE expectations without doing it individually</li>
+                        <li>Providing individual updates on each matter took time the legal team didn't always have</li>
+                        <li>Every status change required a separate message to keep people informed</li>
+                        <li>Automating that step frees Legal to focus on the work itself</li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h4>Reporting had room to grow</h4>
+                    <h4>Stronger reporting</h4>
                     <ul>
-                        <li>Hard to see volume, turnaround times, or where things sat</li>
-                        <li>No easy way to spot patterns or plan ahead</li>
-                        <li>Leadership visibility was limited</li>
+                        <li>Tracking volume, turnaround times and workload was harder than it needed to be</li>
+                        <li>An opportunity to give leadership a clearer picture over time</li>
+                        <li>Better data makes it easier to plan and prioritise</li>
                     </ul>
                 </div>
             </div>
-            <div class="highlight-box" style="margin-top: 24px; padding: 28px 36px;">
-                <div style="font-size:13px;font-weight:700;color:var(--zinc-teal);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">The fix</div>
-                <p style="font-size:22px;color:var(--zinc-dark);font-weight:500;">Automatic status updates to AEs, so Legal never has to report a movement. A full tracker so Sales always knows where things stand. And weekly reporting so the picture is always clear.</p>
+            <div class="highlight-box" style="margin-top: 20px; padding: 24px 32px;">
+                <div style="font-size:13px;font-weight:700;color:var(--zinc-teal);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">What we've built</div>
+                <p style="font-size:20px;color:var(--zinc-dark);font-weight:500;">Automatic notifications keep Sales informed at every step, so the legal team can focus on the work. A shared tracker and weekly report give everyone the visibility they need.</p>
             </div>
         </div>
         <div class="slide-number">2 / 7</div>
